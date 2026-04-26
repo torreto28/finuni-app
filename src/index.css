@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* FinUni — Academic Wealth Design System
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Parchment / Off-white canvas */
+    --background: 40 33% 97%;
+    --foreground: 158 60% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 158 60% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 60% 10%;
+
+    /* Forest Green — primary brand */
+    --primary: 161 85% 16%;
+    --primary-foreground: 40 33% 97%;
+    --primary-glow: 161 60% 28%;
+
+    /* Champagne Gold — accent */
+    --accent: 43 65% 52%;
+    --accent-foreground: 158 60% 10%;
+    --accent-soft: 43 70% 88%;
+
+    --secondary: 158 25% 94%;
+    --secondary-foreground: 158 60% 14%;
+
+    --muted: 40 20% 93%;
+    --muted-foreground: 158 15% 38%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 33% 97%;
+
+    --success: 145 65% 35%;
+    --success-foreground: 40 33% 97%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 161 85% 16%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-forest: linear-gradient(135deg, hsl(161 85% 16%) 0%, hsl(161 70% 22%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 75% 58%) 0%, hsl(38 70% 48%) 100%);
+    --gradient-parchment: linear-gradient(180deg, hsl(40 35% 98%) 0%, hsl(40 25% 95%) 100%);
+    --gradient-card-dark: linear-gradient(135deg, hsl(161 85% 12%) 0%, hsl(161 70% 18%) 100%);
+
+    /* Layered, color-tinted shadows */
+    --shadow-soft: 0 1px 2px hsl(161 50% 10% / 0.04), 0 4px 16px hsl(161 50% 10% / 0.06);
+    --shadow-card: 0 2px 4px hsl(161 50% 10% / 0.04), 0 12px 32px hsl(161 50% 10% / 0.08);
+    --shadow-elevated: 0 4px 8px hsl(161 60% 10% / 0.06), 0 20px 48px hsl(161 60% 10% / 0.12);
+    --shadow-gold: 0 8px 24px hsl(43 65% 45% / 0.25);
+    --shadow-forest: 0 12px 32px hsl(161 85% 14% / 0.28);
+
+    /* Motion */
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-base: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 40 33% 97%;
+    --sidebar-foreground: 158 60% 14%;
+    --sidebar-primary: 161 85% 16%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 40 20% 93%;
+    --sidebar-accent-foreground: 158 60% 14%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 161 85% 16%;
+  }
+
+  .dark {
+    --background: 161 30% 6%;
+    --foreground: 40 33% 95%;
+    --card: 161 30% 9%;
+    --card-foreground: 40 33% 95%;
+    --popover: 161 30% 9%;
+    --popover-foreground: 40 33% 95%;
+    --primary: 43 65% 55%;
+    --primary-foreground: 161 50% 8%;
+    --secondary: 161 25% 14%;
+    --secondary-foreground: 40 33% 95%;
+    --muted: 161 20% 14%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 43 65% 55%;
+    --accent-foreground: 161 50% 8%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 33% 95%;
+    --border: 161 20% 18%;
+    --input: 161 20% 18%;
+    --ring: 43 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-forest { background: var(--gradient-forest); }
+  .bg-gradient-gold { background: var(--gradient-gold); }
+  .bg-gradient-parchment { background: var(--gradient-parchment); }
+  .bg-gradient-card-dark { background: var(--gradient-card-dark); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-forest { box-shadow: var(--shadow-forest); }
+  .transition-smooth { transition: var(--transition-base); }
+}
+
+/* Smooth view transition */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.5s var(--ease-smooth) both; }
+
+@keyframes count-pop {
+  0% { transform: scale(0.96); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-count-pop { animation: count-pop 0.35s var(--ease-smooth); }
+
+/* Exam mode glow for predictive health card */
+@keyframes exam-glow {
+  0%, 100% { box-shadow: 0 0 0 1px hsl(212 90% 55% / 0.35), 0 8px 28px hsl(212 90% 50% / 0.18); }
+  50% { box-shadow: 0 0 0 1px hsl(212 90% 60% / 0.55), 0 12px 36px hsl(212 90% 50% / 0.30); }
+}
+.exam-glow {
+  animation: exam-glow 2.8s var(--ease-smooth) infinite;
+  border-color: hsl(212 90% 55% / 0.45) !important;
+}
+
+/* Milestone unlock */
+@keyframes unlock-pop {
+  0% { transform: scale(0.85) rotate(-6deg); opacity: 0; }
+  60% { transform: scale(1.08) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.animate-unlock { animation: unlock-pop 0.6s var(--ease-smooth) both; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-gold {
+  background: linear-gradient(90deg,
+    hsl(43 65% 52%) 0%,
+    hsl(43 90% 70%) 50%,
+    hsl(43 65% 52%) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.animate-float { animation: float-y 3s ease-in-out infinite; }

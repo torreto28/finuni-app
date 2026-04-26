@@ -1,247 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinUni | Your Degree in Finance Starts Here</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --forest-green: #064E3B;
-            --champagne-gold: #D4AF37;
-            --parchment: #FDFCF8;
-            --deep-shadow: rgba(6, 78, 59, 0.12);
-        }
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinUni — Academic Wealth | Universidad de Medellín</title>
+    <meta name="description" content="FinUni: app financiera para universitarios. Controla gastos, simula inversiones y construye riqueza académica con la metodología Invertir-Primero.">
+    <meta name="author" content="Universidad de Medellín" />
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--parchment);
-            color: var(--forest-green);
-            overflow-x: hidden;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -0.03em;
-        }
-
-        .grain-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65536' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        .layered-surface {
-            background: white;
-            box-shadow:
-                0 4px 6px -1px var(--deep-shadow),
-                0 2px 4px -1px var(--deep-shadow),
-                0 0 0 1px rgba(6, 78, 59, 0.05);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
-        }
-
-        .layered-surface:hover {
-            transform: translateY(-4px);
-            box-shadow:
-                0 20px 25px -5px var(--deep-shadow),
-                0 10px 10px -5px var(--deep-shadow);
-        }
-
-        .gold-gradient-text {
-            background: linear-gradient(to right, #BF9532, #FBF5FF, #D4AF37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-gold {
-            background-color: var(--champagne-gold);
-            color: white;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-gold:hover {
-            filter: brightness(1.1);
-            transform: scale(1.02);
-        }
-
-        .btn-gold:active {
-            transform: scale(0.98);
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .indicator-green { background-color: #10B981; box-shadow: 0 0 8px #10B981; }
-        .indicator-yellow { background-color: #F59E0B; box-shadow: 0 0 8px #F59E0B; }
-        .indicator-red { background-color: #EF4444; box-shadow: 0 0 8px #EF4444; }
-
-        .asymmetric-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .asymmetric-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    
+    
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="FinUni — Academic Wealth | Universidad de Medellín">
+  <meta name="twitter:title" content="FinUni — Academic Wealth | Universidad de Medellín">
+  <meta property="og:description" content="FinUni: app financiera para universitarios. Controla gastos, simula inversiones y construye riqueza académica con la metodología Invertir-Primero.">
+  <meta name="twitter:description" content="FinUni: app financiera para universitarios. Controla gastos, simula inversiones y construye riqueza académica con la metodología Invertir-Primero.">
+  <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21dddab3-23fa-4bb9-8a1c-4a1d94c5bad2">
+  <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21dddab3-23fa-4bb9-8a1c-4a1d94c5bad2">
 </head>
-<body class="antialiased">
-    <div class="grain-overlay"></div>
 
-    <!-- Header -->
-    <header class="px-6 py-8 max-w-7xl mx-auto flex justify-between items-center">
-        <img src="brand_assets/LogoUDEM.png" alt="FinUni Logo" class="h-12 w-auto object-contain">
-        <a href="#start" class="btn-gold px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wider">
-            Get Started
-        </a>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="px-6 py-20 max-w-7xl mx-auto text-center relative">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-emerald-100 rounded-full blur-3xl opacity-40 -z-10"></div>
-        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-emerald-900">
-            Your Degree in <br><span class="gold-gradient-text">Finance</span> Starts Here.
-        </h1>
-        <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-80 leading-relaxed">
-            Stop guessing. Start projecting. The first investment radar designed specifically for the university lifestyle.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#radar" class="btn-gold px-8 py-4 rounded-xl font-bold text-lg">
-                Launch Radar
-            </a>
-            <a href="#analysis" class="px-8 py-4 rounded-xl font-bold text-lg border border-emerald-800/20 hover:bg-emerald-50 transition-colors">
-                Explore Analysis
-            </a>
-        </div>
-    </section>
-
-    <!-- Pocket Analysis Section -->
-    <section id="analysis" class="px-6 py-24 bg-emerald-900 text-parchment rounded-t-[3rem]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Pocket Analysis</h2>
-                <p class="opacity-70 text-lg">Stop squinting at charts. Get clear signals.</p>
-            </div>
-
-            <div class="asymmetric-grid">
-                <!-- Card 1: Large -->
-                <div class="col-span-12 md:col-span-7 layered-surface p-8 rounded-3xl text-emerald-900">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-2xl font-bold">Spending Velocity</h3>
-                        <span class="indicator indicator-yellow"></span>
-                    </div>
-                    <p class="opacity-70 mb-8">Your current spending rate is higher than your average month. Adjust by 12% to stay on track for June.</p>
-                    <div class="h-32 flex items-end gap-2">
-                        <div class="flex-1 bg-emerald-100 rounded-t-md h-1/2"></div>
-                        <div class="flex-1 bg-emerald-100 rounded-t-md h-2/3"></div>
-                        <div class="flex-1 bg-emerald-100 rounded-t-md h-1/3"></div>
-                        <div class="flex-1 bg-emerald-600 rounded-t-md h-full"></div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Small -->
-                <div class="col-span-12 md:col-span-5 layered-surface p-8 rounded-3xl text-emerald-900">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-2xl font-bold">Investment Gap</h3>
-                        <span class="indicator indicator-red"></span>
-                    </div>
-                    <p class="opacity-70">You're missing the current dip in the Tech sector. Radar suggests 5% allocation shift.</p>
-                </div>
-
-                <!-- Card 3: Medium -->
-                <div class="col-span-12 md:col-span-5 layered-surface p-8 rounded-3xl text-emerald-900">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-2xl font-bold">Liquidity Status</h3>
-                        <span class="indicator indicator-green"></span>
-                    </div>
-                    <p class="opacity-70">Emergency fund fully stocked. You are safe for the next 3 months of tuition.</p>
-                </div>
-
-                <!-- Card 4: Large -->
-                <div class="col-span-12 md:col-span-7 layered-surface p-8 rounded-3xl text-emerald-900">
-                    <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-2xl font-bold">Radar Signal</h3>
-                        <span class="indicator indicator-green"></span>
-                    </div>
-                    <p class="opacity-70 mb-4">New Opportunity: Student-led ESG funds are peaking in visibility.</p>
-                    <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100 text-sm font-medium italic">
-                        "High probability of short-term growth based on peer-group trends."
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Predictive Health Section -->
-    <section id="health" class="px-6 py-24 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Future-Proof <br>Your Wallet</h2>
-                <p class="text-lg opacity-70 mb-8 leading-relaxed">
-                    Our Predictive Health engine doesn't just track where you were—it tells you where you'll be. Layered projections based on your academic calendar and spending habits.
-                </p>
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center gap-3 font-semibold">
-                        <div class="w-2 h-2 bg-emerald-600 rounded-full"></div>
-                        Exam-period spending projections
-                    </li>
-                    <li class="flex items-center gap-3 font-semibold">
-                        <div class="w-2 h-2 bg-emerald-600 rounded-full"></div>
-                        Tuition payment countdowns
-                    </li>
-                    <li class="flex items-center gap-3 font-semibold">
-                        <div class="w-2 h-2 bg-emerald-600 rounded-full"></div>
-                        Investment target milestones
-                    </li>
-                </ul>
-            </div>
-            <div class="relative p-8">
-                <!-- Layered Surface Mockup -->
-                <div class="layered-surface p-6 rounded-2xl relative z-10 rotate-3">
-                    <div class="flex justify-between items-center mb-8">
-                        <span class="font-bold text-sm uppercase tracking-widest">Financial Projection</span>
-                        <span class="text-xs bg-emerald-100 px-2 py-1 rounded text-emerald-800 font-bold">S-CURE</span>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="h-4 w-3/4 bg-emerald-50 rounded-full overflow-hidden">
-                            <div class="h-full w-1/2 bg-emerald-600"></div>
-                        </div>
-                        <div class="h-4 w-1/2 bg-emerald-50 rounded-full overflow-hidden">
-                            <div class="h-full w-3/4 bg-emerald-600"></div>
-                        </div>
-                        <div class="h-4 w-2/3 bg-emerald-50 rounded-full overflow-hidden">
-                            <div class="h-full w-1/3 bg-emerald-600"></div>
-                        </div>
-                    </div>
-                    <div class="mt-8 pt-6 border-t border-emerald-100 flex justify-between items-end">
-                        <div>
-                            <p class="text-xs opacity-50 uppercase">Predicted Balance</p>
-                            <p class="text-2xl font-black">$4,250.00</p>
-                        </div>
-                        <div class="text-green-600 font-bold text-sm">↑ 12.4%</div>
-                    </div>
-                </div>
-                <!-- Backdrop Layer -->
-                <div class="absolute top-4 left-4 w-full h-full layered-surface bg-emerald-50 rounded-2xl -z-10 rotate-[-2deg] opacity-60"></div>
-                <div class="absolute -top-8 -right-4 w-full h-full layered-surface bg-emerald-50 rounded-2xl -z-20 rotate-6 opacity-30"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="px-6 py-12 border-t border-emerald-100 max-w-7xl mx-auto text-center">
-        <img src="brand_assets/LogoUDEM.png" alt="FinUni Logo" class="h-8 w-auto mx-auto opacity-50 mb-6 grayscale">
-        <p class="text-sm opacity-40">&copy; 2026 FinUni. Designed for the next generation of wealth.</p>
-    </footer>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
